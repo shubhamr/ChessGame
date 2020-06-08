@@ -16,7 +16,7 @@ public class Board {
 	// Board - Logical Representation
 	private final Tile[][] board;
 
-	//pieces on board - black and white 
+	// pieces on board - black and white
 	public final LinkedList<Piece> blackPieces;
 	public final LinkedList<Piece> whitePieces;
 
@@ -50,7 +50,6 @@ public class Board {
 			board[6][x].put(new Pawn(1, board[6][x], "Pawn", "black"));
 		}
 
-		
 		board[0][3].put(new Queen(0, board[0][3], "Queen", "white"));
 		board[7][3].put(new Queen(1, board[7][3], "Queen", "black"));
 
@@ -99,24 +98,19 @@ public class Board {
 	}
 
 	public ResultSet makeMove(int startX, int startY, int endX, int endY) {
-		ResultSet rs = new ResultSet();
-		
+		ResultSet rs = new ResultSet(startX, startY, endX, endY);
+
 		Tile startSquare = this.board[startX][startY];
 		Tile endSquare = this.board[endX][endY];
 
 		if (startSquare.isOccupied()) {
 			currPiece = startSquare.getOccupyingPiece();
-			
-			rs.setPieceName(currPiece.getPieceType());
-			rs.setPieceColor(currPiece.getPieceColor());
-			rs.setStartX(startX);
-			rs.setStartY(startY);
-			
-			if (currPiece != null) {
-				boolean turnOfWhiteAndWhiteMadeTheMove = currPiece.getColor() == 0 && whiteTurn;
-				boolean turnOfBlackAndBlackMadeTheMove = currPiece.getColor() == 1 && !whiteTurn;
-				whiteTurn = !whiteTurn;
 
+			rs.setPiece(currPiece);
+
+			if (currPiece != null) {
+				boolean turnOfWhiteAndWhiteMadeTheMove = true;
+				boolean turnOfBlackAndBlackMadeTheMove = true;
 				if (turnOfWhiteAndWhiteMadeTheMove || turnOfBlackAndBlackMadeTheMove) {
 
 					List<Tile> legalMoves = currPiece.getLegalMoves(this);
@@ -125,7 +119,7 @@ public class Board {
 					if (legalMoves.contains(endSquare)) {
 						currPiece.move(endSquare);
 						currPiece = null;
-						//whiteTurn = !whiteTurn;
+						whiteTurn = !whiteTurn;
 						rs.setMovePossible(true);
 						return rs;
 					}

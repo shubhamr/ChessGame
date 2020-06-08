@@ -23,13 +23,13 @@ public class Queen extends Piece {
 		int[] occups = getLinearOccupations(board, x, y);
 
 		for (int i = occups[0]; i <= occups[1]; i++) {
-			if (i != y)
-				legalMoves.add(board[i][x]);
+			if (i != x)
+				legalMoves.add(board[i][y]);
 		}
 
 		for (int i = occups[2]; i <= occups[3]; i++) {
-			if (i != x)
-				legalMoves.add(board[y][i]);
+			if (i != y)
+				legalMoves.add(board[x][i]);
 		}
 
 		List<Tile> bMoves = getDiagonalOccupations(board, x, y);

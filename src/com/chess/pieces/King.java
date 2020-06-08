@@ -25,9 +25,9 @@ public class King extends Piece {
 			for (int k = 1; k > -2; k--) {
 				if (!(i == 0 && k == 0)) {
 					try {
-						if (!board[y + k][x + i].isOccupied()
-								|| board[y + k][x + i].getOccupyingPiece().getColor() != this.getColor()) {
-							legalMoves.add(board[y + k][x + i]);
+						if (!board[x + k][y + i].isOccupied()
+								|| board[x + k][y + i].getOccupyingPiece().getColor() != this.getColor()) {
+							legalMoves.add(board[x + k][y + i]);
 						}
 					} catch (ArrayIndexOutOfBoundsException e) {
 						continue;

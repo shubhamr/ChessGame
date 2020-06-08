@@ -1,5 +1,7 @@
 package com.chess;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.chess.players.HumanPlayer;
@@ -10,15 +12,20 @@ public class Game {
 	Board board;
 	Player player1;
 	Player player2;
+	List<ResultSet> moves;
+	
 
 	public Game(Board board, Player player1, Player player2) {
 		super();
 		this.board = board;
 		this.player1 = player1;
 		this.player2 = player2;
+		moves = new ArrayList<ResultSet>();
 	}
 
 	public void getStatus(ResultSet rs) {
+		this.moves.add(rs);
+		System.out.println("Total moves in the game played :"+this.moves.size());
 		System.out.println(rs);
 	}
 
@@ -32,35 +39,37 @@ public class Game {
 		Player player2 = new HumanPlayer(!isWhite, isHuman, "XYZ");
 
 		Board board = new Board();
-		
+
 		Game game = new Game(board, player1, player2);
 
-		ResultSet resultSet = game.board.makeMove(1, 0, 3, 0); // White Pawn
+		ResultSet resultSet = game.board.makeMove(1, 1, 3, 1); // White Pawn
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(6, 1, 5, 1); // Black Pawn
+		resultSet = game.board.makeMove(3, 1, 4, 1); // White Pawn
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(0, 0, 2, 0); // White Bishop
+		resultSet = game.board.makeMove(0, 2, 2, 0); // White Bishop
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(7, 1, 5, 2); // Black Knight
+		resultSet = game.board.makeMove(0, 3, 0, 2); // White Queen
+		game.getStatus(resultSet);
+		
+		resultSet = game.board.makeMove(0, 2, 1, 1); // White Queen
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(3, 0, 4, 0); // White Pawn
+		resultSet = game.board.makeMove(2, 0, 6, 4); // White Bishop
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(5, 1, 4, 1); // Black Pawn
+		resultSet = game.board.makeMove(6, 4, 5, 3); // White Bishop
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(4, 0, 5, 0); // White Pawn
+		resultSet = game.board.makeMove(0, 4, 0, 3); // White King
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(6, 7, 1, 7); // Black Pawn
+		resultSet = game.board.makeMove(0, 3, 0, 2); // White King
 		game.getStatus(resultSet);
-
-		resultSet = game.board.makeMove(1, 5, 2, 5); // White Pawn
-		game.getStatus(resultSet);
+		
+		
 
 		/*
 		 * do { System.out.
@@ -88,7 +97,7 @@ public class Game {
 }
 
 /*
- * 0 1 2 3 4 5 6 7
+ * WHITE 0 1 2 3 4 5 6 7
  * 
  * 0 R K B Q KK B K R
  * 
@@ -106,5 +115,5 @@ public class Game {
  * 
  * 7 R K B Q KK B K R
  * 
- * * 0 1 2 3 4 5 6 7
+ * * 0 1 2 3 4 5 6 7 BLACK
  */

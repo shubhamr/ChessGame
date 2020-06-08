@@ -1,16 +1,30 @@
 package com.chess.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.chess.Tile;
+import com.chess.pieces.Piece;
 
 public class ResultSet {
 	boolean ismovePossible;
-	String pieceName;
-	String pieceColor;
+	Piece piece;
 	List<Tile> legalMoves;
 	int startX;
 	int startY;
+	int endX;
+	int endY;
+
+	public ResultSet(int startX, int startY, int endX, int endY) {
+		super();
+		this.startX = startX;
+		this.startY = startY;
+		this.endX = endX;
+		this.endY = endY;
+		this.legalMoves = new ArrayList<Tile>();
+		this.ismovePossible = false;
+
+	}
 
 	public boolean isMovePossible() {
 		return ismovePossible;
@@ -21,11 +35,7 @@ public class ResultSet {
 	}
 
 	public String getPieceName() {
-		return pieceName;
-	}
-
-	public void setPieceName(String pieceName) {
-		this.pieceName = pieceName;
+		return piece.getPieceType();
 	}
 
 	public List<Tile> getLegalMoves() {
@@ -51,31 +61,67 @@ public class ResultSet {
 	public void setStartY(int startY) {
 		this.startY = startY;
 	}
-	
-	public String getPieceColor() {
-		return pieceColor;
+
+	public int getEndX() {
+		return endX;
 	}
 
-	public void setPieceColor(String pieceColor) {
-		this.pieceColor = pieceColor;
+	public void setEndX(int endX) {
+		this.endX = endX;
 	}
-	
+
+	public int getEndY() {
+		return endY;
+	}
+
+	public void setEndY(int endY) {
+		this.endY = endY;
+	}
+
+	public String getPieceColor() {
+		return piece.getPieceColor();
+	}
+
+	public Piece getPiece() {
+		return piece;
+	}
+
+	public void setPiece(Piece piece) {
+		this.piece = piece;
+	}
+
 	public String movePossibleText(boolean isMovePossible) {
 		return isMovePossible ? "possible" : "blocked";
 	}
 
+	public void exitTheGame() {
+		System.out.println("Exiting the test game because blocked move found !!");
+		System.exit(0);
+	}
+
+	public String printStartToEnd() {
+		String path = " to move from (" + this.getStartX() + " , " + this.getStartY() + ")" + " to (" + this.getEndX()
+				+ " , " + this.getEndY() + ")";
+		return path;
+	}
+
 	@Override
 	public String toString() {
-		String text = this.getPieceColor() +" "+ this.getPieceName()+" from ("+ this.getStartX()+" ," + this.getStartY()+ ")";
-		System.out.println("Move for " + text+ " : " + this.movePossibleText(this.isMovePossible()));
-		System.out.println("While all the possible moves for the "+text+" were :");
-		for(Tile tile: this.getLegalMoves()) {
-			System.out.println("("+tile.getXPosition() + " , "+ tile.getYPosition()+")");
-		}
-		System.out.println("*****************************************************");
-		if (!this.isMovePossible()) {
-			System.out.println("Exiting the test game because blocked move found !!");
-			System.exit(0);
+		if (this.getPiece() != null) {
+			String text = this.getPieceColor() + " " + this.getPieceName() + printStartToEnd();
+			System.out.println("Move for " + text + " : " + this.movePossibleText(this.isMovePossible()));
+			System.out.println("While all the possible moves for the " + text + " were :");
+			for (Tile tile : this.getLegalMoves()) {
+				System.out.println("(" + tile.getXPosition() + " , " + tile.getYPosition() + ")");
+			}
+			System.out.println("*****************************************************");
+			if (!this.isMovePossible()) {
+				exitTheGame();
+			}
+		} else {
+			System.out.println("Piece not found at the start position !!" + printStartToEnd());
+			System.out.println("*****************************************************");
+			exitTheGame();
 		}
 		return "";
 	}
