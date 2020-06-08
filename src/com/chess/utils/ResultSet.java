@@ -91,11 +91,11 @@ public class ResultSet {
 	}
 
 	public String movePossibleText(boolean isMovePossible) {
-		return isMovePossible ? "possible" : "blocked";
+		return isMovePossible ? "possible" : "illegal";
 	}
 
 	public void exitTheGame() {
-		System.out.println("Exiting the test game because blocked move found !!");
+		System.out.println("\nExiting the test game because illegal move found !!");
 		System.exit(0);
 	}
 

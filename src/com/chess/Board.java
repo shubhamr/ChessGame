@@ -10,6 +10,7 @@ import com.chess.pieces.Pawn;
 import com.chess.pieces.Piece;
 import com.chess.pieces.Queen;
 import com.chess.pieces.Rook;
+import com.chess.utils.GameMode;
 import com.chess.utils.ResultSet;
 
 public class Board {
@@ -97,11 +98,13 @@ public class Board {
 		return this.currPiece;
 	}
 
-	public ResultSet makeMove(int startX, int startY, int endX, int endY) {
+	public ResultSet makeMove(int startX, int startY, int endX, int endY, GameMode gameMode) {
 		ResultSet rs = new ResultSet(startX, startY, endX, endY);
 
 		Tile startSquare = this.board[startX][startY];
 		Tile endSquare = this.board[endX][endY];
+		boolean turnOfWhiteAndWhiteMadeTheMove;
+		boolean turnOfBlackAndBlackMadeTheMove;
 
 		if (startSquare.isOccupied()) {
 			currPiece = startSquare.getOccupyingPiece();
@@ -109,8 +112,14 @@ public class Board {
 			rs.setPiece(currPiece);
 
 			if (currPiece != null) {
-				boolean turnOfWhiteAndWhiteMadeTheMove = true;
-				boolean turnOfBlackAndBlackMadeTheMove = true;
+				if (gameMode == GameMode.TWOPLAYER) {
+					turnOfWhiteAndWhiteMadeTheMove = currPiece.getColor() == 0 && whiteTurn;
+					turnOfBlackAndBlackMadeTheMove = currPiece.getColor() == 1 && !whiteTurn;
+				} else {
+					turnOfWhiteAndWhiteMadeTheMove = true;
+					turnOfBlackAndBlackMadeTheMove = true;
+				}
+
 				if (turnOfWhiteAndWhiteMadeTheMove || turnOfBlackAndBlackMadeTheMove) {
 
 					List<Tile> legalMoves = currPiece.getLegalMoves(this);
