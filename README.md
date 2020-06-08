@@ -4,7 +4,7 @@
 Classes Used: 
 
 **Game**  -> *encapsulates Board, Players, Main class*<br>
-**Board** -> *logical representation of chess board, holds 8*8 matrix of Tiles*<br>
+**Board** -> *logical representation of chess board, holds 8 * 8 matrix of Tiles*<br>
 **Tile**  ->  *each cell/tile in the chess board , holds its xth and yth position, reference to board and the piece its holding if any*<br>
 
 **Player** -> *abstract class to represent players*<br>
