@@ -104,13 +104,19 @@ public class ResultSet {
 				+ " , " + this.getEndY() + ")";
 		return path;
 	}
+	
+	public String printStart() {
+		String path = " to move from (" + this.getStartX() + " , " + this.getStartY() + ")";
+		return path;
+	}
 
 	@Override
 	public String toString() {
 		if (this.getPiece() != null) {
-			String text = this.getPieceColor() + " " + this.getPieceName() + printStartToEnd();
-			System.out.println("Move for " + text + " : " + this.movePossibleText(this.isMovePossible()));
-			System.out.println("While all the possible moves for the " + text + " were :");
+			String textStartToEnd = this.getPieceColor() + " " + this.getPieceName() + printStartToEnd();
+			String textStart = this.getPieceColor() + " " + this.getPieceName() + printStart();
+			System.out.println("Move for " + textStartToEnd + " : " + this.movePossibleText(this.isMovePossible()));
+			System.out.println("While all the possible moves for the " + textStart + " were :");
 			for (Tile tile : this.getLegalMoves()) {
 				System.out.println("(" + tile.getXPosition() + " , " + tile.getYPosition() + ")");
 			}

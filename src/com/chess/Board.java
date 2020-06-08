@@ -3,13 +3,7 @@ package com.chess;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.chess.pieces.Bishop;
-import com.chess.pieces.King;
-import com.chess.pieces.Knight;
-import com.chess.pieces.Pawn;
-import com.chess.pieces.Piece;
-import com.chess.pieces.Queen;
-import com.chess.pieces.Rook;
+import com.chess.pieces.*;
 import com.chess.utils.GameMode;
 import com.chess.utils.ResultSet;
 

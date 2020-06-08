@@ -40,14 +40,14 @@ public class Game {
 
 	public static void main(String[] args) {
 
-//		Game game = startNewGame(GameMode.FREE_ROAMING);
-//		sampleGamePlayOne(game);
+		Game game = startNewGame(GameMode.FREE_ROAMING);
+		sampleGamePlayOne(game);
 
-		Game game = startNewGame(GameMode.TWOPLAYER);
+		game = startNewGame(GameMode.TWOPLAYER);
 		sampleGamePlayTwo(game);
 		
-//		game = startNewGame(GameMode.TWOPLAYER);
-//		sampleGamePlayThree(game);
+		game = startNewGame(GameMode.TWOPLAYER);
+		sampleGamePlayThree(game);
 
 	}
 
@@ -130,35 +130,37 @@ public class Game {
 	}
 	
 	private static void sampleGamePlayThree(Game game) {
-		ResultSet resultSet = game.board.makeMove(1, 1, 3, 1, game.getGameMode()); // White Pawn
+		ResultSet resultSet = game.board.makeMove(1, 7, 3, 7, game.getGameMode()); // White Pawn
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(3, 1, 4, 1, game.getGameMode()); // White Pawn
+		resultSet = game.board.makeMove(7, 6, 5, 7, game.getGameMode()); // Black Knight
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(0, 2, 2, 0, game.getGameMode()); // White Bishop
+		resultSet = game.board.makeMove(3, 7, 4, 7, game.getGameMode()); // White Pawn
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(0, 3, 0, 2, game.getGameMode()); // White Queen
+		resultSet = game.board.makeMove(6, 0, 4, 0, game.getGameMode()); // Black Pawn
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(0, 2, 1, 1, game.getGameMode()); // White Queen
+		resultSet = game.board.makeMove(0, 7, 3, 7, game.getGameMode()); // White Rook
+		game.getStatus(resultSet);
+		
+		resultSet = game.board.makeMove(4, 0, 3, 0, game.getGameMode()); // Black Pawn
+		game.getStatus(resultSet);
+		
+		resultSet = game.board.makeMove(3, 7, 3, 2, game.getGameMode()); // White Rook
+		game.getStatus(resultSet);
+		
+		resultSet = game.board.makeMove(7, 0, 4, 0, game.getGameMode()); // Black Rook
+		game.getStatus(resultSet);
+		
+		resultSet = game.board.makeMove(3, 2, 3, 0, game.getGameMode()); // White Rook killing black pawn
+		game.getStatus(resultSet);
+		
+		resultSet = game.board.makeMove(4, 0, 3, 0, game.getGameMode()); // Black Rook killing white rook
 		game.getStatus(resultSet);
 
-		resultSet = game.board.makeMove(2, 0, 6, 4, game.getGameMode()); // White Bishop
-		game.getStatus(resultSet);
-
-		resultSet = game.board.makeMove(6, 4, 5, 3, game.getGameMode()); // White Bishop
-		game.getStatus(resultSet);
-
-		resultSet = game.board.makeMove(0, 4, 0, 3, game.getGameMode()); // White King
-		game.getStatus(resultSet);
-
-		resultSet = game.board.makeMove(0, 3, 0, 2, game.getGameMode()); // White King
-		game.getStatus(resultSet);
-
-		resultSet = game.board.makeMove(6, 5, 5, 5, game.getGameMode()); // White Bishop
-		game.getStatus(resultSet);
+		
 		
 	}
 
