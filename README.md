@@ -15,3 +15,12 @@ HumanPlayer, ComputerPlayer<br>
  2. *each of the classes define their own legalMoves based on the type of movement they can do*
  3. *common method to get linearPossibleMoves(horizontal and vertical)*
  4.  *common method to get diagnolPossibleMoves*
+ 
+ 
+<br>
+
+**Possible Future Enhancements:** 
+
+ 1. CheckMateEngine 
+ 2. GUI Interface
+
